@@ -1,9 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.safari.service import Service
 import time
 
-# * Initialize the Chrome driver
-driver = webdriver.Safari()
+# * Initialize the Safari driver
+service = Service(executable_path="/usr/bin/safaridriver")
+driver = webdriver.Safari(service)
 
 # * Open a website
 driver.get("http://demostore.supersqa.com")
@@ -45,6 +47,6 @@ time.sleep(1)
 
 # * Get the Error
 error_message = driver.find_element(by=By.CSS_SELECTOR, value="ul.woocommerce-error li")
-print(error_message)
+print(error_message.text)
 
 driver.quit() # Close the browser
